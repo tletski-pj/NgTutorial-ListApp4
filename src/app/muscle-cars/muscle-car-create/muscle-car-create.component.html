@@ -1,0 +1,11 @@
+<div>
+    <h3>Enter Your Favorite</h3>
+    <div>
+        <input type="text" placeholder="make" #make>
+        <input type="text" placeholder="model" #model>
+        <input type="text" placeholder="year" #year>
+        <input type="text" placeholder="image url" #url>
+        <br>
+        <button (click)="addMuscleCar(make.value, model.value, year.value, url.value)">Add a Muscle Car</button>
+    </div>
+</div>
