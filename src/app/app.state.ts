@@ -1,7 +1,5 @@
-import { IceCream } from './models/ice-cream';
-import { MuscleCar } from './models/muscle-car';
+import { User } from './models/user';
 
 export interface AppState {
-  readonly iceCream: IceCream[];
-  readonly muscleCar: MuscleCar[];
+  readonly user: User;
 }

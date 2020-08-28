@@ -1,13 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { MuscleCar } from '../models/muscle-car';
 import { AddMuscleCar, RemoveMuscleCar} from '../actions/muscle-car-actions';
+import { MuscleCarState } from '../models/muscle-car';
 
-
-export const muscleCarReducer = createReducer<MuscleCar[]>([],
-    on(AddMuscleCar, (state, action) => {
-        return [...state, action.muscleCar];
+export const muscleCarReducer = createReducer<MuscleCarState>(
+    { muscleCar: [] },
+    on(AddMuscleCar, (state: MuscleCarState, action) => {
+        return {muscleCar: [...state.muscleCar, action.muscleCar]};
     }),
-    on(RemoveMuscleCar, (state, action) => {
-        return state.filter((flavor, index , stateArray) => (index !== action.muscleCarId));
+    on(RemoveMuscleCar, (state: MuscleCarState, action) => {
+        const muscleCarArray = state.muscleCar.filter((flavor, index , stateArray) => (index !== action.muscleCarId));
+        return {muscleCar: muscleCarArray};
     })
 );

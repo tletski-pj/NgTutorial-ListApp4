@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import { IceCream } from '../../models/ice-cream';
+import { getIceCreams } from '../../selectors/ice-cream-selector';
 import * as FlavorActions from '../../actions/ice-cream-actions';
 
 @Component({
@@ -14,7 +15,7 @@ export class IceCreamDisplayComponent implements OnInit {
   private iceCreams: Observable<IceCream[]>;
 
   constructor(private store: Store<AppState>) {
-      this.iceCreams = this.store.pipe(select('iceCream'));
+      this.iceCreams = this.store.pipe(select(getIceCreams));
    }
 
   ngOnInit() { }

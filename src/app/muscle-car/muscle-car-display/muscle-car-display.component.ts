@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import { MuscleCar } from '../../models/muscle-car';
+import { getMuscleCars } from '../../selectors/muscle-car-selector';
 import * as MuscleCarActions from '../../actions/muscle-car-actions';
 
 @Component({
@@ -14,7 +15,7 @@ export class MuscleCarDisplayComponent implements OnInit {
   private muscleCars: Observable<MuscleCar[]>;
 
   constructor(private store: Store<AppState>) {
-      this.muscleCars = this.store.pipe(select('muscleCar'));
+      this.muscleCars = this.store.pipe(select(getMuscleCars));
    }
 
   ngOnInit() { }

@@ -1,20 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
-import { IceCream } from '../models/ice-cream';
 import { AddFlavor, RemoveFlavor} from '../actions/ice-cream-actions';
+import { IceCreamState  } from '../models/ice-cream';
 
-// Section 1
-const initialState: IceCream = {
-    flavor: 'Vanilla',
-    maker: 'Honey Hut'
-}
+const initialState: IceCreamState = {
+    iceCream: [
+        { flavor: 'Vanilla', maker: 'Honey Hut'}
+    ]
+};
 
-// Section 2 & 3 - Version 2
-
-export const iceCreamReducer = createReducer<IceCream[]>([initialState],
-    on(AddFlavor, (state, action) => {
-        return [...state, action.iceCream];
+export const iceCreamReducer = createReducer<IceCreamState>(
+    initialState,
+    on(AddFlavor, (state: IceCreamState, action) => {
+        return {iceCream: [...state.iceCream, action.iceCream]};
     }),
-    on(RemoveFlavor, (state, action) => {
-        return state.filter((flavor, index , stateArray) => (index !== action.flavorId));
+    on(RemoveFlavor, (state: IceCreamState, action) => {
+        const iceCreamArray = state.iceCream.filter((flavor, index , stateArray) => (index !== action.flavorId));
+        return {iceCream: iceCreamArray};
     })
 );
